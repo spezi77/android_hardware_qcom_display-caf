@@ -14,7 +14,7 @@ common_header_export_path := qcom/display
 common_libs := liblog libutils libcutils libhardware
 
 #Common C flags
-common_flags := -DDEBUG_CALC_FPS -Wno-missing-field-initializers -Wno-attributes
+common_flags := -DDEBUG_CALC_FPS -Wno-missing-field-initializers -Wno-attributes -Wno-strict-aliasing
 
 ifeq ($(ARCH_ARM_HAVE_NEON),true)
     common_flags += -D__ARM_HAVE_NEON
