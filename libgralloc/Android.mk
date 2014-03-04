@@ -46,5 +46,9 @@ LOCAL_CFLAGS                  := $(common_flags) $(libmemalloc-def) -DLOG_TAG=\"
 LOCAL_CFLAGS                  := -Wno-attributes
 LOCAL_ADDITIONAL_DEPENDENCIES := $(common_deps) $(kernel_deps)
 LOCAL_SRC_FILES               := ionalloc.cpp alloc_controller.cpp
+ifeq ($(BOARD_USES_PMEM_ADSP),true)
+    LOCAL_SRC_FILES           += pmemalloc.cpp
+    LOCAL_CFLAGS              += -DUSE_PMEM_ADSP
+endif
 
 include $(BUILD_SHARED_LIBRARY)
