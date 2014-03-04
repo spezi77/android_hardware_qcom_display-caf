@@ -74,6 +74,7 @@ static int gralloc_map(gralloc_module_t const* module,
         }
 
         hnd->base = intptr_t(mappedAddress) + hnd->offset;
+#ifndef USE_PMEM_ADSP
         mappedAddress = MAP_FAILED;
         size = ROUND_UP_PAGESIZE(sizeof(MetaData_t));
         err = memalloc->map_buffer(&mappedAddress, size,
@@ -85,6 +86,7 @@ static int gralloc_map(gralloc_module_t const* module,
             return -errno;
         }
         hnd->base_metadata = intptr_t(mappedAddress) + hnd->offset_metadata;
+#endif
     }
     return 0;
 }
